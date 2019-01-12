@@ -51,7 +51,7 @@ class PoseNet:
                            dtype=tf.float32, shape=[1, 1, 1, 3], name='img_mean')
         im_centered = inputs - mean
 
-        with slim.arg_scope([slim.conv2d, slim.conv2d_transpose],is_training=True):
+        with slim.arg_scope(resnet_utils.resnet_arg_scope(is_training=False)):
             net, end_points = net_fun(im_centered,
                                       global_pool=False, output_stride=16)
 
